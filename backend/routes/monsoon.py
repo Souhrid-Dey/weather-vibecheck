@@ -5,7 +5,7 @@ Handles endpoints for preparedness plans, pantry survival, SOS, and commute risk
 from fastapi import APIRouter, HTTPException, Request
 from limiter import limiter
 from models import PreparednessRequest, PantryRequest, SOSRequest, CommuteRequest
-from services.gemini_client import ask_gemini
+from services.llm_client import ask_llm
 from prompts.monsoon import (
     PREPAREDNESS_PLAN_PROMPT,
     PANTRY_SURVIVAL_PROMPT,
@@ -20,7 +20,7 @@ router = APIRouter()
 async def generate_preparedness_plan(request: Request, body: PreparednessRequest):
     user_message = f"Location: {body.location}\nFamily Size: {body.family_size}\nAnxiety Level: {body.anxiety_level}"
     try:
-        return ask_gemini(PREPAREDNESS_PLAN_PROMPT, user_message)
+        return ask_llm(PREPAREDNESS_PLAN_PROMPT, user_message)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -29,7 +29,7 @@ async def generate_preparedness_plan(request: Request, body: PreparednessRequest
 async def generate_pantry_plan(request: Request, body: PantryRequest):
     user_message = f"Available Ingredients: {body.ingredients}"
     try:
-        return ask_gemini(PANTRY_SURVIVAL_PROMPT, user_message)
+        return ask_llm(PANTRY_SURVIVAL_PROMPT, user_message)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -38,7 +38,7 @@ async def generate_pantry_plan(request: Request, body: PantryRequest):
 async def generate_sos_alerts(request: Request, body: SOSRequest):
     user_message = f"Situation: {body.situation}\nLocation: {body.location}"
     try:
-        return ask_gemini(SOS_TRANSLATOR_PROMPT, user_message)
+        return ask_llm(SOS_TRANSLATOR_PROMPT, user_message)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -47,6 +47,6 @@ async def generate_sos_alerts(request: Request, body: SOSRequest):
 async def analyze_commute_risk(request: Request, body: CommuteRequest):
     user_message = f"Start: {body.start_location}\nDestination: {body.end_location}"
     try:
-        return ask_gemini(COMMUTE_RISK_PROMPT, user_message)
+        return ask_llm(COMMUTE_RISK_PROMPT, user_message)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
