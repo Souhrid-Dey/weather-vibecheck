@@ -14,7 +14,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Configure the SDK with the key
-client = Groq(api_key=os.environ.get("GROQ_API_KEY", ""))
+api_key = os.environ.get("GROQ_API_KEY", "").strip()
+if not api_key:
+    raise RuntimeError("CRITICAL: GROQ_API_KEY environment variable is missing or empty. Please check your configuration.")
+
+client = Groq(api_key=api_key)
 
 # Llama 3.3 70B is incredible at formatting JSON and very fast on Groq
 MODEL_NAME = "llama-3.3-70b-versatile"

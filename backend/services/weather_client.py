@@ -37,16 +37,16 @@ def fetch_weather(lat, lon):
 
 def get_live_weather(location_name: str) -> str:
     """Original single location fetcher"""
-    if not location_name or len(location_name.strip()) < 2: return ""
+    if not location_name or len(location_name.strip()) < 2: return "(Live weather context unavailable: Invalid location provided)"
     try:
         loc = geocode(location_name)
-        if not loc: return ""
+        if not loc: return "(Live weather context unavailable: Could not resolve location)"
         resolved_name = f"{loc.get('name', '')}, {loc.get('country', '')}".strip(', ')
         w = fetch_weather(loc['latitude'], loc['longitude'])
         return f"(Resolved: {resolved_name} | LIVE WEATHER: {w})"
     except Exception as e:
         logger.error(f"Failed to fetch weather for {location_name}: {e}")
-        return ""
+        return "(Live weather context unavailable: API Error)"
 
 def get_commute_context(start_loc: str, end_loc: str) -> str:
     """Fetches weather for both locations and calculates the distance."""
@@ -55,7 +55,7 @@ def get_commute_context(start_loc: str, end_loc: str) -> str:
         end = geocode(end_loc)
         
         if not start or not end:
-            return ""
+            return "(Route context unavailable: Could not resolve one or both locations)"
             
         dist = haversine(start['latitude'], start['longitude'], end['latitude'], end['longitude'])
         start_w = fetch_weather(start['latitude'], start['longitude'])
@@ -67,4 +67,4 @@ def get_commute_context(start_loc: str, end_loc: str) -> str:
         return f"Distance: {dist:.1f} km. Start ({start_name}) Weather: [{start_w}]. Destination ({end_name}) Weather: [{end_w}]."
     except Exception as e:
         logger.error(f"Failed to fetch commute context: {e}")
-        return ""
+        return "(Route context unavailable: API Error)"

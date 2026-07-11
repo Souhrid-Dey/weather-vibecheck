@@ -29,7 +29,7 @@
       <form id="vibecheck-form">
         <div class="form-group">
           <label for="location">Location (City/Neighborhood)</label>
-          <input type="text" id="location" name="location" required placeholder="e.g., Andheri West, Mumbai">
+          <input type="text" id="location" name="location" required minlength="3" pattern=".*\S+.*" placeholder="e.g., Andheri West, Mumbai">
         </div>
         <div class="form-group">
           <label for="family-size">Family Size</label>
@@ -55,7 +55,7 @@
       <form id="pantry-form">
         <div class="form-group">
           <label for="ingredients">What's in your fridge/pantry right now?</label>
-          <textarea id="ingredients" name="ingredients" rows="4" required placeholder="e.g., 2 apples, half loaf of bread, peanut butter, puffed rice, 3 tomatoes..."></textarea>
+          <textarea id="ingredients" name="ingredients" rows="4" required minlength="3" placeholder="e.g., 2 apples, half loaf of bread, peanut butter, puffed rice, 3 tomatoes..."></textarea>
         </div>
         <button type="submit">Generate Meal Plan</button>
       </form>
@@ -69,11 +69,11 @@
       <form id="commute-form">
         <div class="form-group">
           <label for="start-loc">Starting Location</label>
-          <input type="text" id="start-loc" name="start_location" required placeholder="e.g., Bandra">
+          <input type="text" id="start-loc" name="start_location" required minlength="3" pattern=".*\S+.*" placeholder="e.g., Bandra">
         </div>
         <div class="form-group">
           <label for="end-loc">Destination</label>
-          <input type="text" id="end-loc" name="end_location" required placeholder="e.g., Lower Parel">
+          <input type="text" id="end-loc" name="end_location" required minlength="3" pattern=".*\S+.*" placeholder="e.g., Lower Parel">
         </div>
         <button type="submit">Analyze Route</button>
       </form>
@@ -87,11 +87,11 @@
       <form id="sos-form">
         <div class="form-group">
           <label for="emergency-sit">Emergency Situation</label>
-          <textarea id="emergency-sit" name="situation" rows="2" required placeholder="e.g., Ground floor flooding, water is rising, 1 senior citizen needs help."></textarea>
+          <textarea id="emergency-sit" name="situation" rows="2" required minlength="3" placeholder="e.g., Ground floor flooding, water is rising, 1 senior citizen needs help."></textarea>
         </div>
         <div class="form-group">
           <label for="emergency-loc">Exact Location</label>
-          <textarea id="emergency-loc" name="location" rows="2" required placeholder="e.g., Building Name, Flat 101, Street Name, Landmark"></textarea>
+          <textarea id="emergency-loc" name="location" rows="2" required minlength="3" placeholder="e.g., Building Name, Flat 101, Street Name, Landmark"></textarea>
         </div>
         <button type="submit">Generate SMS Alerts</button>
       </form>
