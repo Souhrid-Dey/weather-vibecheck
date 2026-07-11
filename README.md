@@ -7,7 +7,7 @@
 ## 🚀 Live Links
 - **Unified Vercel Deployment:** Configured via `vercel.json`
 - **App URL:** [https://weather-vibecheck.vercel.app](https://weather-vibecheck.vercel.app)
-- **GitHub Repo:** `[Remember to add your public repo URL here]`
+- **GitHub Repo:** [https://github.com/Souhrid-Dey/weather-vibecheck](https://github.com/Souhrid-Dey/weather-vibecheck)
 
 ## 🤖 Gen-AI Integration Points (Hackathon Requirement)
 We leveraged Google's Gemini 2.0 Flash (`gemini-2.0-flash`) via the `google-generativeai` SDK, forcing strict JSON structural outputs for robust frontend integration.
