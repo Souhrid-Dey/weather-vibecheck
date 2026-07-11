@@ -22,7 +22,7 @@
       "destination": "/frontend/assets/$1"
     },
     {
-      "source": "/(.*\.(ico|svg|png|jpg|js|css|json))",
+      "source": "/(.*\\\\.(ico|svg|png|jpg|js|css|json))",
       "destination": "/frontend/$1"
     },
     {
