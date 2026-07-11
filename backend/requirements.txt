@@ -4,3 +4,5 @@ groq==0.15.0
 python-dotenv==1.1.1
 pydantic==2.11.7
 slowapi==0.1.9
+pytest
+httpx
