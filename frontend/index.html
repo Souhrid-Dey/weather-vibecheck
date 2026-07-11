@@ -95,7 +95,7 @@
         </div>
         <button type="submit">Generate SMS Alerts</button>
       </form>
-      <div id="sos-results" class="result-block hidden"></div>
+      <div id="sos-results" class="result-block hidden" aria-live="polite"></div>
     </section>
 
     <!-- Loading Overlay -->
@@ -103,8 +103,6 @@
       <div class="spinner"></div>
       <p id="loading-text">Processing...</p>
     </div>
-    <div id="sos-results" class="result-block hidden" aria-live="polite"></div>
-  </section>
   </main>
   <script type="module" src="/src/main.js"></script>
 </body>

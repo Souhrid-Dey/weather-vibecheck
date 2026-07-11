@@ -37,7 +37,7 @@ body {
   background-color: var(--bg-color);
   color: var(--text-primary);
   line-height: 1.6;
-  padding: var(--spacing-md);
+  padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -45,7 +45,7 @@ body {
 .app-container {
   max-width: 680px;
   margin: 0 auto;
-  padding: var(--spacing-lg) 0;
+  padding: var(--spacing-lg) var(--spacing-md);
 }
 
 header {
@@ -73,30 +73,36 @@ header p {
 /* Navigation Tabs */
 .tabs {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: var(--spacing-sm);
   margin-bottom: var(--spacing-lg);
-  overflow-x: auto;
-  padding-bottom: 4px;
-  /* hide scrollbar */
-  -ms-overflow-style: none;  
-  scrollbar-width: none;  
-}
-.tabs::-webkit-scrollbar { 
-    display: none; 
 }
 
 .tab-btn {
+  flex: 1 1 calc(50% - var(--spacing-sm));
   background-color: var(--surface-color);
   color: var(--text-secondary);
   border: 1px solid var(--border-color);
-  padding: 10px 20px;
-  border-radius: 30px;
+  padding: 12px 8px;
+  border-radius: 12px;
   cursor: pointer;
-  white-space: nowrap;
+  white-space: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.2;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: var(--shadow-sm);
+}
+
+@media (min-width: 600px) {
+  .tab-btn {
+    flex: 1 1 auto;
+  }
 }
 
 .tab-btn:hover {
