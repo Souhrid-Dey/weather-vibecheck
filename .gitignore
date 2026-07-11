@@ -1,0 +1,16 @@
+.vercel
+.env
+backend/.venv/
+backend/__pycache__/
+frontend/node_modules/
+frontend/dist/
+
+# Ignored Folders
+warmup-cooking-app/
+
+# Ignored Markdown Files
+Challenge.md
+Hackathon guidelines.md
+PRD sample.md
+Project ideas.md
+Vibe Coding notes.md
