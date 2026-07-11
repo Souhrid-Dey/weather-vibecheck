@@ -4,14 +4,18 @@ Configured for maximum security and rate limiting.
 """
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from slowapi import Limiter, _rate_limit_exceeded_handler
-from slowapi.util import get_remote_address
+import sys
+import os
+# Inject backend directory into python path for Vercel
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.responses import JSONResponse
 
-# Set up rate limiter
-limiter = Limiter(key_func=get_remote_address)
+from limiter import limiter
+
 
 app = FastAPI(
     title="Weather VibeCheck API",

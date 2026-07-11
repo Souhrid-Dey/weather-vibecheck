@@ -2,7 +2,8 @@
 API Routes for Weather VibeCheck.
 Handles endpoints for preparedness plans, pantry survival, SOS, and commute risk.
 """
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
+from limiter import limiter
 from models import PreparednessRequest, PantryRequest, SOSRequest, CommuteRequest
 from services.gemini_client import ask_gemini
 from prompts.monsoon import (
@@ -15,32 +16,36 @@ from prompts.monsoon import (
 router = APIRouter()
 
 @router.post("/plan")
-async def generate_preparedness_plan(request: PreparednessRequest):
-    user_message = f"Location: {request.location}\nFamily Size: {request.family_size}\nAnxiety Level: {request.anxiety_level}"
+@limiter.limit("5/minute")
+async def generate_preparedness_plan(request: Request, body: PreparednessRequest):
+    user_message = f"Location: {body.location}\nFamily Size: {body.family_size}\nAnxiety Level: {body.anxiety_level}"
     try:
         return ask_gemini(PREPAREDNESS_PLAN_PROMPT, user_message)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.post("/pantry")
-async def generate_pantry_plan(request: PantryRequest):
-    user_message = f"Available Ingredients: {request.ingredients}"
+@limiter.limit("5/minute")
+async def generate_pantry_plan(request: Request, body: PantryRequest):
+    user_message = f"Available Ingredients: {body.ingredients}"
     try:
         return ask_gemini(PANTRY_SURVIVAL_PROMPT, user_message)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.post("/sos")
-async def generate_sos_alerts(request: SOSRequest):
-    user_message = f"Situation: {request.situation}\nLocation: {request.location}"
+@limiter.limit("5/minute")
+async def generate_sos_alerts(request: Request, body: SOSRequest):
+    user_message = f"Situation: {body.situation}\nLocation: {body.location}"
     try:
         return ask_gemini(SOS_TRANSLATOR_PROMPT, user_message)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.post("/commute")
-async def analyze_commute_risk(request: CommuteRequest):
-    user_message = f"Start: {request.start_location}\nDestination: {request.end_location}"
+@limiter.limit("5/minute")
+async def analyze_commute_risk(request: Request, body: CommuteRequest):
+    user_message = f"Start: {body.start_location}\nDestination: {body.end_location}"
     try:
         return ask_gemini(COMMUTE_RISK_PROMPT, user_message)
     except Exception as e:
