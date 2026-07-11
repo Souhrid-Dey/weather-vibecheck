@@ -118,6 +118,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
+      if(plan.dietary_information) {
+        html += `<div style="margin: 1rem 0; padding: 10px; background-color: rgba(var(--accent-info-rgb), 0.1); border-left: 4px solid var(--accent-info);">
+          <h4 style="color:var(--accent-info); margin-bottom: 0.5rem;">🥗 Dietary Information</h4>
+          <p style="font-size: 0.9em;">${plan.dietary_information}</p>
+        </div>`;
+      }
+
       html += `<h4>💡 Rationing Tips</h4><ul>`;
       plan.rationing_tips.forEach(t => html += `<li>${t}</li>`);
       html += `</ul>`;
