@@ -16,8 +16,8 @@ load_dotenv()
 # Configure the SDK with the key
 client = Groq(api_key=os.environ.get("GROQ_API_KEY", ""))
 
-# Llama 3 70B is incredible at formatting JSON and very fast on Groq
-MODEL_NAME = "llama3-70b-8192"
+# Llama 3.3 70B is incredible at formatting JSON and very fast on Groq
+MODEL_NAME = "llama-3.3-70b-versatile"
 
 def ask_llm(system_prompt: str, user_message: str) -> dict:
     """
