@@ -16,8 +16,8 @@ load_dotenv()
 # Configure the SDK with the key
 genai.configure(api_key=os.environ.get("GEMINI_API_KEY", ""))
 
-# Using gemini-2.0-flash as it's fast and supports structured JSON outputs well
-MODEL_NAME = "gemini-2.0-flash"
+# Using gemini-1.5-flash as it has a guaranteed free tier limit (2.0-flash sometimes defaults to 0 on new projects)
+MODEL_NAME = "gemini-1.5-flash"
 
 def ask_gemini(system_prompt: str, user_message: str) -> dict:
     """
