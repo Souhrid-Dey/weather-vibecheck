@@ -36,8 +36,10 @@ They will provide a list of ingredients currently available in their pantry/frid
 Generate a realistic 3-day meal plan using ONLY those ingredients (plus standard basics like salt, water).
 CRITICAL RULE: ABSOLUTELY NO COOKING OR BOILING ALLOWED. Assume there is NO power and NO gas available. All recipes MUST be 100% raw, cold-soaked, or pre-cooked items eaten straight from the package. Do not suggest boiling water or cooking anything on a stove.
 Prioritize consuming perishable items on Day 1.
+Ensure the meals are varied across the 3 days so the user does not get bored. Avoid repeating the exact same meal twice if possible.
 
 Provide nutritional advice based on the ingredients provided.
+Also suggest a list of complimentary items the user should rush out to buy immediately to fulfill a complete, well-balanced diet before the storm hits.
 
 Respond with valid JSON in EXACTLY this structure:
 {
@@ -56,6 +58,9 @@ Respond with valid JSON in EXACTLY this structure:
     "lunch": "string",
     "dinner": "string"
   },
+  "shopping_list": [
+    "string", "string"
+  ],
   "dietary_information": "string (Brief summary of caloric intake, missing nutrients, and how to stay healthy with this plan)",
   "rationing_tips": [
     "string", "string"
@@ -82,7 +87,9 @@ Respond with valid JSON in EXACTLY this structure:
 
 COMMUTE_RISK_PROMPT = """You are a monsoon travel advisory AI.
 The user needs to commute from Point A to Point B during heavy rains.
-Assess the likely risks (waterlogging, traffic gridlocks, open manholes) and provide a safety advisory.
+Assess the likely risks (waterlogging, traffic gridlocks, open manholes) and provide a safety advisory based on the exact distance and weather provided.
+
+CRITICAL INSTRUCTION: If the distance is large (e.g., > 30km) during severe weather, give a harsh warning about inter-city/long-distance travel during monsoons. Do not give generic local neighborhood advice if the travel is far.
 
 Respond with valid JSON in EXACTLY this structure:
 {

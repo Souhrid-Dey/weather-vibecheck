@@ -6,7 +6,7 @@ from fastapi import APIRouter, HTTPException, Request
 from limiter import limiter
 from models import PreparednessRequest, PantryRequest, SOSRequest, CommuteRequest
 from services.llm_client import ask_llm
-from services.weather_client import get_live_weather
+from services.weather_client import get_live_weather, get_commute_context
 from prompts.monsoon import (
     PREPAREDNESS_PLAN_PROMPT,
     PANTRY_SURVIVAL_PROMPT,
@@ -48,8 +48,8 @@ async def generate_sos_alerts(request: Request, body: SOSRequest):
 @router.post("/commute")
 @limiter.limit("5/minute")
 async def analyze_commute_risk(request: Request, body: CommuteRequest):
-    weather_context = get_live_weather(body.end_location) # Use destination weather
-    user_message = f"Start: {body.start_location}\nDestination: {body.end_location}\nLive Destination Context: {weather_context}"
+    commute_context = get_commute_context(body.start_location, body.end_location)
+    user_message = f"Start: {body.start_location}\nDestination: {body.end_location}\nRoute Context: {commute_context}"
     try:
         return ask_llm(COMMUTE_RISK_PROMPT, user_message)
     except Exception as e:

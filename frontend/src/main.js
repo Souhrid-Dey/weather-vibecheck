@@ -118,10 +118,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
+      if(plan.shopping_list && plan.shopping_list.length > 0) {
+        html += `<div style="margin: 1rem 0; padding: 10px; background-color: rgba(var(--accent-success-rgb), 0.1); border-left: 4px solid var(--accent-success);">
+          <h4 style="color:var(--accent-success); margin-bottom: 0.5rem;">🛒 Shopping List (Buy Immediately)</h4>
+          <ul style="margin:0; padding-left: 20px;">`;
+        plan.shopping_list.forEach(item => html += `<li>${item}</li>`);
+        html += `</ul></div>`;
+      }
+
       if(plan.dietary_information) {
         html += `<div style="margin: 1rem 0; padding: 10px; background-color: rgba(var(--accent-info-rgb), 0.1); border-left: 4px solid var(--accent-info);">
           <h4 style="color:var(--accent-info); margin-bottom: 0.5rem;">🥗 Dietary Information</h4>
-          <p style="font-size: 0.9em;">${plan.dietary_information}</p>
+          <p style="font-size: 0.9em; margin:0;">${plan.dietary_information}</p>
         </div>`;
       }
 
