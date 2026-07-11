@@ -1,8 +1,22 @@
 {
-  "venvPath": "backend",
-  "venv": ".venv",
-  "extraPaths": [
-    "backend",
-    "backend/.venv/Lib/site-packages"
+  "executionEnvironments": [
+    {
+      "root": "backend",
+      "venvPath": "backend",
+      "venv": ".venv",
+      "extraPaths": [
+        "backend",
+        "backend/.venv/Lib/site-packages"
+      ]
+    },
+    {
+      "root": "warmup-cooking-app/backend",
+      "venvPath": "warmup-cooking-app/backend",
+      "venv": ".venv",
+      "extraPaths": [
+        "warmup-cooking-app/backend",
+        "warmup-cooking-app/backend/.venv/Lib/site-packages"
+      ]
+    }
   ]
 }

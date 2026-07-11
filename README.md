@@ -19,6 +19,13 @@ Instead of relying on static, generic weather alerts, our app dynamically querie
 
 ---
 
+## 🍳 Toodles: Warm-Up Challenge
+This repository also contains **Toodles**, an AI-powered cooking and meal planning assistant built for the hackathon's warm-up challenge. It generates personalized meal plans, grocery lists, substitutions, and budget breakdowns using Google Gemini 2.0 Flash. 
+
+You can explore the source code in the [`warmup-cooking-app/`](./warmup-cooking-app) directory, or check out the full [Toodles README](./warmup-cooking-app/README.md).
+
+---
+
 ## 🎯 Problem Statement Alignment
 During severe monsoons, citizens face power outages, flooded roads, and high anxiety. Existing weather apps just show raw data (e.g., "50mm rain"), leaving the user to figure out what to do. 
 
