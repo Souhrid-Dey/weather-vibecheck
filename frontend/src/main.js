@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setLoading(true, "Assessing situation and anxiety levels...");
     vibeResults.innerHTML = '';
     vibeResults.classList.add('hidden');
+    vibeResults.classList.remove('animate-fade-in');
 
     const formData = new FormData(vibeForm);
     const data = {
@@ -84,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       vibeResults.innerHTML = html;
       vibeResults.classList.remove('hidden');
+      vibeResults.classList.add('animate-fade-in');
     } catch (err) {
       displayError(vibeResults, err.message);
     } finally {
@@ -99,6 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setLoading(true, "Rationing ingredients...");
     pantryResults.innerHTML = '';
     pantryResults.classList.add('hidden');
+    pantryResults.classList.remove('animate-fade-in');
 
     const data = { ingredients: new FormData(pantryForm).get('ingredients') };
 
@@ -139,6 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       pantryResults.innerHTML = html;
       pantryResults.classList.remove('hidden');
+      pantryResults.classList.add('animate-fade-in');
     } catch (err) {
       displayError(pantryResults, err.message);
     } finally {
@@ -154,6 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setLoading(true, "Analyzing route hazards...");
     commuteResults.innerHTML = '';
     commuteResults.classList.add('hidden');
+    commuteResults.classList.remove('animate-fade-in');
 
     const formData = new FormData(commuteForm);
     const data = {
@@ -182,6 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       commuteResults.innerHTML = html;
       commuteResults.classList.remove('hidden');
+      commuteResults.classList.add('animate-fade-in');
     } catch (err) {
       displayError(commuteResults, err.message);
     } finally {
@@ -197,6 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setLoading(true, "Translating alerts...");
     sosResults.innerHTML = '';
     sosResults.classList.add('hidden');
+    sosResults.classList.remove('animate-fade-in');
 
     const formData = new FormData(sosForm);
     const data = {
@@ -227,6 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       sosResults.innerHTML = html;
       sosResults.classList.remove('hidden');
+      sosResults.classList.add('animate-fade-in');
     } catch (err) {
       displayError(sosResults, err.message);
     } finally {
